@@ -335,8 +335,6 @@ def main():
     )
 
     st.title(" Real-time Snapchat Filters")
-    st.markdown("*Live camera filters powered by MediaPipe and OpenCV*")
-
     # Create columns for layout
     col1, col2 = st.columns([2, 1])
 
@@ -384,7 +382,7 @@ def main():
         """)
 
     with col1:
-        st.header("📹 Live Camera Feed")
+        st.header(" Live Camera Feed")
 
         # Create the video transformer
         ctx = webrtc_streamer(
@@ -410,3 +408,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
