@@ -334,24 +334,24 @@ def main():
         layout="wide"
     )
 
-    st.title("📸 Real-time Snapchat Filters")
+    st.title(" Real-time Snapchat Filters")
     st.markdown("*Live camera filters powered by MediaPipe and OpenCV*")
 
     # Create columns for layout
     col1, col2 = st.columns([2, 1])
 
     with col2:
-        st.header("🎭 Filter Controls")
+        st.header(" Filter Controls")
 
         # Filter selection
         filter_options = {
             "None": "none",
-            "🐶 Dog Filter": "dog",
-            "🐱 Cat Filter": "cat",
-            "🕶️ Sunglasses": "sunglasses",
-            "🌈 Rainbow Aura": "rainbow",
-            "💖 Heart Eyes": "hearts",
-            "🥸 Mustache": "mustache"
+            " Dog Filter": "dog",
+            " Cat Filter": "cat",
+            " Sunglasses": "sunglasses",
+            " Rainbow Aura": "rainbow",
+            " Heart Eyes": "hearts",
+            " Mustache": "mustache"
         }
 
         selected_filter = st.selectbox(
@@ -362,13 +362,13 @@ def main():
 
         # Instructions
         st.markdown("""
-        ### 📋 Instructions:
+        ###  Instructions:
         1. **Allow camera access** when prompted
         2. **Select a filter** from the dropdown above
         3. **Position your face** in the camera view
         4. **Have fun** with real-time filters!
 
-        ### ⚡ Tips:
+        ###  Tips:
         - Good lighting improves detection
         - Keep your face centered
         - Move slowly for best tracking
@@ -406,58 +406,7 @@ def main():
         if ctx.video_transformer:
             ctx.video_transformer.set_filter(filter_options[selected_filter])
 
-    # Additional information
-    st.markdown("---")
-    st.header("🛠️ Technical Details")
-
-    with st.expander("Installation & Setup"):
-        st.code("""
-# Install required packages
-pip install streamlit streamlit-webrtc opencv-python mediapipe
-
-# Run the application
-streamlit run app.py
-        """, language="bash")
-
-    with st.expander("How It Works"):
-        st.markdown("""
-        **Real-time Processing Pipeline:**
-
-        1. **Camera Capture**: `streamlit-webrtc` captures live video frames
-        2. **Face Detection**: MediaPipe detects faces and facial landmarks
-        3. **Filter Application**: OpenCV draws filter elements based on face positions
-        4. **Frame Return**: Processed frame is displayed in real-time
-
-        **Key Technologies:**
-        - **MediaPipe**: Google's ML framework for face detection
-        - **OpenCV**: Computer vision library for image processing
-        - **WebRTC**: Real-time communication for video streaming
-        - **Streamlit**: Web app framework for the user interface
-        """)
-
-    with st.expander("Customize Your Own Filters"):
-        st.code("""
-def apply_custom_filter(self, image):
-    \"\"\"Template for creating custom filters\"\"\"
-    landmarks_list = self.get_face_landmarks(image)
-    height, width = image.shape[:2]
-
-    for landmarks in landmarks_list:
-        # Get specific facial landmarks
-        nose_tip = landmarks.landmark[1]
-        left_eye = landmarks.landmark[33]
-        right_eye = landmarks.landmark[263]
-
-        # Convert to pixel coordinates
-        nose_x = int(nose_tip.x * width)
-        nose_y = int(nose_tip.y * height)
-
-        # Add your custom graphics here
-        cv2.circle(image, (nose_x, nose_y), 10, (255, 0, 0), -1)
-
-    return image
-        """, language="python")
-
 
 if __name__ == "__main__":
+
     main()
